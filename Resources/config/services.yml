@@ -1,0 +1,6 @@
+services:
+  Jotaeme\AemetBundle\Aemet\APIClient:
+      public: true
+      arguments:
+          - "%apikey%"
+  aemet.client: '@Jotaeme\AemetBundle\Aemet\APIClient'
