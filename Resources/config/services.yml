@@ -1,6 +1,19 @@
 services:
+  aemet.factory.datosRespuesta:
+      class: Jotaeme\AemetBundle\Factory\DatosRespuestaFactory
+
+  aemet.factory.prevision:
+      class: Jotaeme\AemetBundle\Factory\PrevisionFactory
+
+  aemet.factory.previsionesEspecificas:
+      class: Jotaeme\AemetBundle\Factory\PrevisionesEspecificasFactory
+      arguments:
+          - "@aemet.factory.prevision"
+
   Jotaeme\AemetBundle\Aemet\APIClient:
       public: true
       arguments:
           - "%aemet.apikey%"
+          - "@aemet.factory.datosRespuesta"
+          - "@aemet.factory.previsionesEspecificas"
   aemet.client: '@Jotaeme\AemetBundle\Aemet\APIClient'
